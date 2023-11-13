@@ -8,7 +8,7 @@ export default function HomePage() {
       <nav className="maincol flex w-full items-center justify-between bg-background py-6">
         <span className="text-3xl font-medium tracking-tight">sartor</span>
 
-        <div className="flex gap-10">
+        <div className="md:flex gap-10 hidden">
           <h1 className="cursor-pointer hover:underline">About</h1>
           <h1 className="cursor-pointer hover:underline">Shop</h1>
           <h1 className="cursor-pointer hover:underline">Contact</h1>
