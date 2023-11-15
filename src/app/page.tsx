@@ -1,14 +1,69 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
+import { Contact, Menu, Microscope, ShoppingCart } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const routes = [
+  {
+    label: "About",
+    icon: Microscope,
+    href: "/about",
+    color: "text-sky-500",
+  },
+  {
+    label: "Shop",
+    icon: ShoppingCart,
+    href: "/shop",
+    color: "text-violet-500",
+  },
+  {
+    label: "Contact",
+    icon: Contact,
+    color: "text-pink-700",
+    href: "/contact",
+  },
+];
 
 export default function HomePage() {
+  const pathname = usePathname();
+
   return (
     <main>
       <nav className="maincol flex w-full items-center justify-between bg-background py-6">
         <span className="text-3xl font-medium tracking-tight">sartor</span>
 
-        <div className="md:flex gap-10 hidden">
+        <Sheet>
+          <SheetTrigger className="flex md:hidden">
+            <Menu />
+          </SheetTrigger>
+          <SheetContent className="flex flex-col items-end border py-20 px-0">
+            {routes.map((route) => (
+              <Link
+                key={route.href}
+                href={route.href}
+                className={cn(
+                  "group flex w-full cursor-pointer justify-start rounded-lg p-3 text-sm font-medium transition",
+                  pathname === route.href
+                    ? "bg-white/10"
+                    : "text-zinc-400",
+                )}
+              >
+                <div className="flex flex-1 items-center py-2 px-1 text-right justify-end">
+                  {route.label}
+                  <route.icon className={cn("ml-3 h-5 w-5", route.color)} />
+                </div>
+              </Link>
+            ))}
+          </SheetContent>
+        </Sheet>
+
+        <div className="hidden gap-10 md:flex">
           <h1 className="cursor-pointer hover:underline">About</h1>
           <h1 className="cursor-pointer hover:underline">Shop</h1>
           <h1 className="cursor-pointer hover:underline">Contact</h1>
