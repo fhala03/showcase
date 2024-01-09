@@ -17,6 +17,12 @@ const routes = [
     color: "text-sky-500",
   },
   {
+    label: "Collection",
+    icon: Microscope,
+    href: "/collection",
+    color: "text-sky-500",
+  },
+  {
     label: "Shop",
     icon: ShoppingCart,
     href: "/shop",
@@ -42,19 +48,17 @@ export default function HomePage() {
           <SheetTrigger className="flex md:hidden">
             <Menu />
           </SheetTrigger>
-          <SheetContent className="flex flex-col items-end border py-20 px-0">
+          <SheetContent className="flex flex-col items-end border px-0 py-20">
             {routes.map((route) => (
               <Link
                 key={route.href}
                 href={route.href}
                 className={cn(
                   "group flex w-full cursor-pointer justify-start rounded-lg p-3 text-sm font-medium transition",
-                  pathname === route.href
-                    ? "bg-white/10"
-                    : "text-zinc-400",
+                  pathname === route.href ? "bg-white/10" : "text-zinc-400",
                 )}
               >
-                <div className="flex flex-1 items-center py-2 px-1 text-right justify-end">
+                <div className="flex flex-1 items-center justify-end px-1 py-2 text-right">
                   {route.label}
                   <route.icon className={cn("ml-3 h-5 w-5", route.color)} />
                 </div>
@@ -65,6 +69,7 @@ export default function HomePage() {
 
         <div className="hidden gap-10 md:flex">
           <h1 className="cursor-pointer hover:underline">About</h1>
+          <h1 className="cursor-pointer hover:underline">Collection</h1>
           <h1 className="cursor-pointer hover:underline">Shop</h1>
           <h1 className="cursor-pointer hover:underline">Contact</h1>
         </div>
